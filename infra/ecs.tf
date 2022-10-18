@@ -1,15 +1,12 @@
 resource "aws_ecs_cluster" "main" {
   name = "ruby-api-cluster"
 }
-data "aws_ecr_repository" "ecr-repository"{
-name = var.repository
-}
 
 data "template_file" "ruby_app" {
   template = file("./templates/ecs/ruby_app.json.tpl")
 
   vars = {
-    app_image      = data.aws_ecr_repository.ecr-repository.repository_url
+    app_image      = aws_ecr_repository.ecr_repository.repository_url
     app_port       = var.app_port
     fargate_cpu    = var.fargate_cpu
     fargate_memory = var.fargate_memory
@@ -47,5 +44,5 @@ resource "aws_ecs_service" "main" {
     container_port   = var.app_port
   }
 
-  depends_on = [aws_alb_listener.front_end, aws_iam_role_policy_attachment.ecs_task_execution_role]
+  depends_on = [aws_ecr_repository.ecr_repository, aws_alb_listener.front_end, aws_iam_role_policy_attachment.ecs_task_execution_role]
 }

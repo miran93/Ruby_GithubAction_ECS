@@ -1,4 +1,4 @@
-resource "aws_ecr_repository" "ecr-repository" {
+resource "aws_ecr_repository" "ecr_repository" {
   name                 = var.repository
   image_tag_mutability = "MUTABLE"
 
