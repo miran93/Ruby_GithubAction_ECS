@@ -35,7 +35,7 @@ env:
   ECR_REPOSITORY: ecr-repository           # set this to your Amazon ECR repository name
   ECS_SERVICE: service1                 # set this to your Amazon ECS service name
   ECS_CLUSTER: ruby-api-cluster                 # set this to your Amazon ECS cluster name
-  ECS_TASK_DEFINITION: ruby-app-task # set this to the path to your Amazon ECS task definition file, e.g. .aws/task-definition.json
+  ECS_TASK_DEFINITION: ruby-app-task.json # set this to the path to your Amazon ECS task definition file, e.g. .aws/task-definition.json
   CONTAINER_NAME: ruby-app           # set this to the name of the container in the  containerDefinitions section of your task definition
 
 permissions:
