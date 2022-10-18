@@ -12,4 +12,4 @@ ADD Gemfile.lock /aws-s3-bucket-api/Gemfile.lock
 
 RUN bundle install
 ADD . /aws-s3-bucket-api
-CMD ["bundle", "exec", "rails", "s", "-p", "8080", "-b", "0.0.0.0"]
+EXPOSE 80
