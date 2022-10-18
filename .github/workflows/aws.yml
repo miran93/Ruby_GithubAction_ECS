@@ -107,8 +107,8 @@ jobs:
        uses: aws-actions/amazon-ecs-deploy-task-definition@v1
        with:
           task-definition: ${{ steps.update-task-def.outputs.task-definition }}
-          service: aws-ecs-typescript-service
-          cluster: aws-ecs-typescript-api
+          service: service1
+          cluster: ruby-api-cluster 
           
      - name: Check tag version
        run: | 
