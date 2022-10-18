@@ -17,13 +17,13 @@ data "template_file" "container_definitions" {
 [
   {
     "name": "${var.name}_web",
-    "image": "${var.image_url}:latest",
+    "image": "${var.image_url}:dev",
     "essential": true,
-    "command": ["bundle", "exec", "rails", "server", "-b", "0.0.0.0", "-p", "80"],
+    "command": ["bundle", "exec", "rails", "server", "-b", "0.0.0.0", "-p", "8080"],
     "portMappings": [
       {
         "protocol": "tcp",
-        "containerPort": 80,
+        "containerPort": 8080,
         "hostPort": 80
       }
     ],
