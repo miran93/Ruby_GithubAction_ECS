@@ -64,7 +64,7 @@ Rails.application.configure do
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
   config.i18n.fallbacks = true
-  config.hosts << /[a-z0-9]+\.c9users\.io/
+  config.hosts << "ruby-app-load-balancer-1982717862.us-east-2.elb.amazonaws.com"
 
   # Don't log any deprecations.
   config.active_support.report_deprecations = false
