@@ -58,6 +58,13 @@ jobs:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS }}
         aws-region: ${{ env.AWS_REGION }}
+    
+     - name: terraform initialization 
+        echo "AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY }}" >> $GITHUB_ENV
+        echo "AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS }}" >> $GITHUB_ENV
+       run: cd infra/ && terraform init 
+     - name: terraform deployment
+       run: cd infra/ && terraform apply -var="tag=${{ env.RELEASE_VERSION }}"  -auto-approve
 
      - name: Login to Amazon ECR
        id: login-ecr
@@ -80,9 +87,3 @@ jobs:
      - name: Check tag version
        run: | 
            echo ${{ env.RELEASE_VERSION }}
-           echo "AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY }}" >> $GITHUB_ENV
-           echo "AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS }}" >> $GITHUB_ENV
-     - name: terraform initialization 
-       run: cd infra/ && terraform init 
-     - name: terraform deployment
-       run: cd infra/ && terraform apply -var="tag=${{ env.RELEASE_VERSION }}"  -auto-approve
