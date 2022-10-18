@@ -1,0 +1,107 @@
+Started GET "/vi/api/files" for 127.0.0.1 at 2022-10-17 12:45:55 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/vi/api/files"):
+  
+Started GET "/favicon.ico" for 127.0.0.1 at 2022-10-17 12:45:55 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/api/v1/files" for 127.0.0.1 at 2022-10-17 12:46:44 -0300
+  
+SyntaxError (/Users/henriquefernanndes/Github/unknown-964ac363-07fd-4976-9c65-fc3c11dc153c-aws/app/aws-s3-bucket-api/app/controllers/api/v1/files_controller.rb:14: syntax error, unexpected end-of-input, expecting `end'):
+  
+app/controllers/api/v1/files_controller.rb:14: syntax error, unexpected end-of-input, expecting `end'
+app/controllers/api/v1/files_controller.rb:14: syntax error, unexpected end-of-input, expecting `end'
+Started GET "/api/v1/files" for 127.0.0.1 at 2022-10-17 12:47:09 -0300
+  
+LoadError (cannot load such file -- aws-sdk-s3):
+  
+app/controllers/api/v1/files_controller.rb:1:in `<main>'
+Started GET "/api/v1/files" for 127.0.0.1 at 2022-10-17 12:47:51 -0300
+  
+LoadError (cannot load such file -- aws-sdk-s3):
+  
+app/controllers/api/v1/files_controller.rb:1:in `<main>'
+Started GET "/api/v1/files" for 127.0.0.1 at 2022-10-17 12:49:04 -0300
+  
+Zeitwerk::NameError (expected file /Users/henriquefernanndes/Github/unknown-964ac363-07fd-4976-9c65-fc3c11dc153c-aws/app/aws-s3-bucket-api/app/controllers/api/v1/files_controller.rb to define constant Api::V1::FilesController, but didn't):
+  
+zeitwerk (2.6.1) lib/zeitwerk/loader/callbacks.rb:25:in `on_file_autoloaded'
+zeitwerk (2.6.1) lib/zeitwerk/kernel.rb:28:in `require'
+activesupport (7.0.4) lib/active_support/inflector/methods.rb:280:in `const_get'
+activesupport (7.0.4) lib/active_support/inflector/methods.rb:280:in `constantize'
+activesupport (7.0.4) lib/active_support/core_ext/string/inflections.rb:74:in `constantize'
+actionpack (7.0.4) lib/action_dispatch/http/request.rb:90:in `controller_class_for'
+actionpack (7.0.4) lib/action_dispatch/request/utils.rb:95:in `action_encoding_template'
+actionpack (7.0.4) lib/action_dispatch/request/utils.rb:83:in `encode'
+actionpack (7.0.4) lib/action_dispatch/request/utils.rb:45:in `set_binary_encoding'
+actionpack (7.0.4) lib/action_dispatch/http/parameters.rb:68:in `path_parameters='
+actionpack (7.0.4) lib/action_dispatch/journey/router.rb:48:in `block in serve'
+actionpack (7.0.4) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (7.0.4) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (7.0.4) lib/action_dispatch/routing/route_set.rb:852:in `call'
+rack (2.2.4) lib/rack/etag.rb:27:in `call'
+rack (2.2.4) lib/rack/conditional_get.rb:27:in `call'
+rack (2.2.4) lib/rack/head.rb:12:in `call'
+activerecord (7.0.4) lib/active_record/migration.rb:603:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (7.0.4) lib/active_support/callbacks.rb:99:in `run_callbacks'
+actionpack (7.0.4) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/actionable_exceptions.rb:17:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/debug_exceptions.rb:28:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/show_exceptions.rb:26:in `call'
+railties (7.0.4) lib/rails/rack/logger.rb:40:in `call_app'
+railties (7.0.4) lib/rails/rack/logger.rb:25:in `block in call'
+activesupport (7.0.4) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (7.0.4) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (7.0.4) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (7.0.4) lib/rails/rack/logger.rb:25:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/remote_ip.rb:93:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.4) lib/rack/runtime.rb:22:in `call'
+activesupport (7.0.4) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (7.0.4) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (7.0.4) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/static.rb:23:in `call'
+rack (2.2.4) lib/rack/sendfile.rb:110:in `call'
+actionpack (7.0.4) lib/action_dispatch/middleware/host_authorization.rb:137:in `call'
+railties (7.0.4) lib/rails/engine.rb:530:in `call'
+puma (5.6.5) lib/puma/configuration.rb:252:in `call'
+puma (5.6.5) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.6.5) lib/puma/thread_pool.rb:340:in `with_force_shutdown'
+puma (5.6.5) lib/puma/request.rb:76:in `handle_request'
+puma (5.6.5) lib/puma/server.rb:443:in `process_client'
+puma (5.6.5) lib/puma/thread_pool.rb:147:in `block in spawn_thread'
+Started GET "/api/v1/files" for 127.0.0.1 at 2022-10-17 12:50:40 -0300
+Processing by Api::V1::FilesController#index as HTML
+Completed 200 OK in 952ms (Views: 0.4ms | ActiveRecord: 0.0ms | Allocations: 49822)
+
+
+Started GET "/" for 172.18.0.1 at 2022-10-17 23:50:23 +0000
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /usr/local/bundle/gems/railties-7.0.4/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /usr/local/bundle/gems/railties-7.0.4/lib/rails/templates/rails/welcome/index.html.erb (Duration: 7.8ms | Allocations: 730)
+Completed 200 OK in 87ms (Views: 29.7ms | ActiveRecord: 0.0ms | Allocations: 6905)
+
+
+Started GET "/api/v1/files" for 172.18.0.1 at 2022-10-17 23:50:34 +0000
+Processing by Api::V1::FilesController#index as HTML
+Completed 500 Internal Server Error in 3010ms (ActiveRecord: 0.0ms | Allocations: 2590)
+
+
+  
+Aws::Errors::MissingRegionError (No region was provided. Configure the `:region` option or export the region name to ENV['AWS_REGION']):
+  
+app/controllers/api/v1/files_controller.rb:6:in `index'
+Started GET "/favicon.ico" for 172.18.0.1 at 2022-10-17 23:50:37 +0000
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/api/v1/files" for 172.18.0.1 at 2022-10-17 23:54:10 +0000
+Processing by Api::V1::FilesController#index as HTML
+Completed 200 OK in 1107ms (Views: 0.7ms | ActiveRecord: 0.0ms | Allocations: 49764)
+
+
