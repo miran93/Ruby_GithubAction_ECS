@@ -63,19 +63,49 @@ jobs:
        id: login-ecr
        uses: aws-actions/amazon-ecr-login@v1
     
-     - name: Build, tag, and push image to Amazon ECR
+        
+     - name: Build & tag docker image
        id: build-image
        env:
-        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        IMAGE_TAG: ${{ env.CONTAINER_NAME }}
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          IMAGE_TAG: ${{ env.CONTAINER_NAME }}-${{ github.sha }}
+
        run: |
-        # Build a docker container and
-        # push it to ECR so that it can
-        # be deployed to ECS.
-        cd app
-        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
-        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-        echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+          # Build a docker container and
+          # push it to ECR so that it can
+          # be deployed to ECS.
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+     
+     - name: Push image to Amazon ECR
+       id: push-image
+       env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_REPOSITORY: aws-ecs-typescript-api
+          IMAGE_TAG: aws-ecs-typescript-api-${{ github.sha }}
+       run: |
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+      
+     - name: Download task definition
+       run: aws ecs describe-task-definition --task-definition aws-ecs-typescript-task --query taskDefinition > task-definition.json
+
+     - name: Fill in the new image ID in the Amazon ECS task definition
+       id: update-task-def
+       uses: aws-actions/amazon-ecs-render-task-definition@v1
+       with:
+          task-definition: task-definition.json
+          container-name: aws-ecs-typescript-container
+          image: ${{ steps.push-image.outputs.image }}
+
+     - name: Deploy Amazon ECS task definition
+       id: deploy-task-def
+       uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+       with:
+          task-definition: ${{ steps.update-task-def.outputs.task-definition }}
+          service: aws-ecs-typescript-service
+          cluster: aws-ecs-typescript-api
           
      - name: Check tag version
        run: | 
