@@ -10,7 +10,8 @@ Rails.application.configure do
 
   # Do not eager load code on boot.
   config.eager_load = false
-  config.hosts << "ruby-app-load-balancer-1982717862.us-east-2.elb.amazonaws.com"
+  config.hosts << "dev-api-load-balancer-592653359.us-east-1.elb.amazonaws.com"
+  config.hosts << "dev-api-load-balancer-592653359.us-east-1.elb.amazonaws.com"
   # Show full error reports.
   config.consider_all_requests_local = true
 

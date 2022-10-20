@@ -1,5 +1,5 @@
 variable "region" {
-    default = "us-east-2"
+    default = "us-east-1"
 }
 
 variable "repository" {
@@ -9,7 +9,7 @@ variable "repository" {
 
 variable "ecs_task_execution_role_name" {
   description = "ECS task execution role name"
-  default = "myEcsTaskExecutionRole"
+  default = "EcsTaskExecutionRole"
 }
 
 variable "ecs_auto_scale_role_name" {
@@ -48,6 +48,19 @@ variable "fargate_memory" {
 variable "app_count" {
   description = "Number of docker containers to run"
   default     = 2
+}
+
+variable "AWS_ACCESS_KEY_ID" {
+  type = string
+}
+
+
+variable "AWS_ACCESS_KEY_SECRET" {
+  type = string
+}
+
+
+variable "name" {
 }
 
 variable "tag" {

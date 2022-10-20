@@ -1,11 +1,11 @@
 resource "aws_alb" "main" {
-  name            = "ruby-app-load-balancer"
+  name            = "${var.name}-load-balancer"
   subnets         = aws_subnet.public.*.id
   security_groups = [aws_security_group.lb.id]
 }
 
 resource "aws_alb_target_group" "app" {
-  name        = "ruby-app-target-group"
+  name        = "${var.name}-target-group"
   port        = 80
   protocol    = "HTTP"
   vpc_id      = aws_vpc.main.id

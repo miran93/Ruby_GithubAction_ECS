@@ -7,6 +7,8 @@ data "template_file" "ruby_app" {
 
   vars = {
     app_image      = aws_ecr_repository.ecr_repository.repository_url
+    bucket_access_key_id = aws_ssm_parameter.access_key.value
+    bucket_access_secret_key = aws_ssm_parameter.access_secret.value
     app_port       = var.app_port
     fargate_cpu    = var.fargate_cpu
     fargate_memory = var.fargate_memory

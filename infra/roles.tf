@@ -3,7 +3,9 @@ data "aws_iam_policy_document" "ecs_task_execution_role" {
   statement {
     sid = ""
     effect = "Allow"
-    actions = ["sts:AssumeRole"]
+    actions = [
+      "sts:AssumeRole"
+    ]
 
     principals {
       type        = "Service"
@@ -12,6 +14,8 @@ data "aws_iam_policy_document" "ecs_task_execution_role" {
   }
 }
 
+data "aws_iam_policy_document" "read_parameters" {
+}
 # ECS task execution role
 resource "aws_iam_role" "ecs_task_execution_role" {
   name               = var.ecs_task_execution_role_name
@@ -20,6 +24,10 @@ resource "aws_iam_role" "ecs_task_execution_role" {
 
 # ECS task execution role policy attachment
 resource "aws_iam_role_policy_attachment" "ecs_task_execution_role" {
+  for_each = toset([
+    "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy",
+    "arn:aws:iam::aws:policy/AmazonSSMReadOnlyAccess"
+  ])
   role       = aws_iam_role.ecs_task_execution_role.name
-  policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
+  policy_arn = each.value
 }
