@@ -3,7 +3,7 @@
 FROM ruby:3.0.0
 
 RUN apt-get update -qq && apt-get install -y nodejs
-RUN DEBIAN_FRONTEND=noninteractive apt-get install ...
+RUN apt-get update && apt-get install -y apt-utils
 RUN mkdir /aws-s3-bucket-api
 
 WORKDIR /aws-s3-bucket-api
