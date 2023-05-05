@@ -1,1 +1,1 @@
-# ecs-deployment-github-actions
+# ecs-deployment-git-actions
