@@ -1,10 +1,19 @@
 # A simple Dockerfile for a RoR application
 
+FROM phusion/baseimage:0.9.19
+
+# Use baseimage-docker's init system.
+CMD ["/sbin/my_init"]
+
+# ...put your own build instructions here...
+RUN apt-get update && apt-get upgrade -y -o Dpkg::Options::="--force-confold"
+
+# Clean up APT when done.
+RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
 FROM ruby:3.0.0
 
-RUN \
-apt-get update -qq && apt-get install -y nodejs && \
-apt-get update && apt-get install -y apt-utils && apt-get install -y curl
+RUN apt-get update -qq && apt-get install -y nodejs
 RUN mkdir /aws-s3-bucket-api
 
 WORKDIR /aws-s3-bucket-api
