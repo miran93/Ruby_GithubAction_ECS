@@ -2,8 +2,6 @@
 
 FROM ruby:3.0.0
 
-RUN apt-get update
-RUN apt-get install apt-utils
 RUN apt-get update -qq && apt-get install -y nodejs
 RUN mkdir /aws-s3-bucket-api
 
